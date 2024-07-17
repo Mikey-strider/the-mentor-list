@@ -13,7 +13,7 @@ export const index = async () => {
   }
 };
 
-export const ccreate = async (formData) => {
+export const create = async (formData) => {
   try {
     const response = await fetch(BASE_URL, {
       method: 'POST',

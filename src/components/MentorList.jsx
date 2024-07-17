@@ -7,8 +7,8 @@ const MentorList = ({ mentors, updateSelected }) => {
       <h1>Mentors List</h1>
       <ul>
         {mentors?.length ? (
-          mentors?.map((mentors) => (
-            <link key={mentors._id} to={`/mentors/${mentor._id}`} onClick={() => updateSelected(mentor)}>
+          mentors?.map((mentor) => (
+            <link key={mentor._id} to={`/mentors/${mentor._id}`} onClick={() => updateSelected(mentor)}>
               <li>{mentor.userName}</li>
             </link>
           ))

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { create, index, remove, update } from "./services/mentorServices";
+import { create, index, removeMentor, update } from "./services/mentorServices";
 
 
 import MentorList from "./components/MentorList";
 import MentorDetails from "./components/MentorDetails";
+import MentorForm from "./components/MentorForm";
 import UpdateMentorForm from "./components/MentorUpdate";
 
 const App = () => {
@@ -36,7 +37,7 @@ const navigate = useNavigate()
   }
 
   async function handleRemoveMentor(id) {
-    const removedMentor = await remove(id);
+    const removedMentor = await removeMentor(id);
     const updatedMentorsArray = mentors.filter(mentor => id !== mentor._id)
     console.log(removedMentor)
     console.log(updatedMentorsArray)
@@ -62,6 +63,11 @@ const navigate = useNavigate()
   return (
     <>
       <Routes>
+        
+        <Route 
+          path="/"
+          element={ <MentorForm handleAddMentor={handleAddMentor} />}
+        />
         <Route
           path="/"
           element={<MentorList mentors={mentors} updateSelected={updateSelected} />}

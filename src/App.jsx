@@ -12,7 +12,7 @@ const App = () => {
   const [mentors, setMentors] = useState([]);
   const [selectMentor, setSelectMentor] = useState(null);
   const [error, setError] = useState("");
-const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function updateSelected(mentor) {
     console.log(mentor, " --- mentor selected");

@@ -2,7 +2,7 @@ import { SERVER_URL } from "../util";
 
 const BASE_URL = import.meta.env.VITE_BACK_END_SERVER_URL + "/mentors";
 
-export async function index () {
+export async function index() {
   try {
     const response = await fetch(BASE_URL);
     const data = await response.json();
@@ -15,7 +15,7 @@ export async function index () {
   }
 }
 
-export async function create (formData) {
+export async function create(formData) {
   try {
     const response = await fetch(`${SERVER_URL}/mentors`, {
       method: 'POST',
@@ -34,7 +34,7 @@ export async function create (formData) {
 }
 
 
-export async function removeMentor (id) {
+export async function removeMentor(id) {
   const options = {
     method: 'DELETE',
     headers: {
@@ -42,7 +42,7 @@ export async function removeMentor (id) {
     },
   };
   try {
-    const response =await fetch(BASE_URL + `${id}`, options);
+    const response = await fetch(BASE_URL + `${id}`, options);
     const data = response.json();
     if (response.ok) return data;
     throw new Error(data.error);

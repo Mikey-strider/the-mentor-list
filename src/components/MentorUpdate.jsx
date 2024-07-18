@@ -5,10 +5,10 @@ import { useNavigate, useParams } from "react-router-dom";
 const UpdateMentorForm = () => {
   const [mentor, setMentor] = useState();
   const [isInvalidId, setIsInvalidId] = useState(false);
-  const {mentorId} = useParams();
+  const { mentorId } = useParams();
   const navigate = useNavigate()
 
-  async function getMentor(){
+  async function getMentor() {
     try {
       const res = await fetch(`${SERVER_URL}/mentors/${mentorId}`);
       setMentor(await res.json())
@@ -19,10 +19,10 @@ const UpdateMentorForm = () => {
     }
   }
 
-  useEffect(() => {getMentor()}, []);
+  useEffect(() => { getMentor() }, []);
 
   const handleChange = (e) => {
-    setMentor({ ...mentor, [e.target.name]: e.target.value});
+    setMentor({ ...mentor, [e.target.name]: e.target.value });
   };
 
   async function handleSubmit(e) {
@@ -47,7 +47,7 @@ const UpdateMentorForm = () => {
 
   }
 
-  if (isInvalidId){
+  if (isInvalidId) {
     return (
       <div>
         <h1>Information could not be found</h1>
@@ -56,35 +56,38 @@ const UpdateMentorForm = () => {
   }
 
   return mentor ? (
-    <div className="form-container">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="mentorName"> Name </label>
-        <input
-          id="mentorName"
-          name="mentorName"
-          value={mentor.mentorName}
-          onChange={handleChange}
-          required
-        />
-        <label htmlFor="educationType"> Education </label>
-        <input
-          id="educationType"
-          name="educationType"
-          value={mentor.educationType}
-          onChange={handleChange}
-        />
-        <label htmlFor="aboutMe"> About Me </label>
-        <input
-          id="aboutMe"
-          name="aboutMe"
-          value={mentor.aboutMe}
-          onChange={handleChange}
-        />
-        <button onClick={handleSubmit} type="submit">
-          Confirm profile update {mentor.mentorName}
-        </button>
-      </form>
-    </div>
+    <>
+      <h1>The Mentor List</h1>
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="mentorName"> Name: </label>
+          <input
+            id="mentorName"
+            name="mentorName"
+            value={mentor.mentorName}
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="educationType"> Education: </label>
+          <input
+            id="educationType"
+            name="educationType"
+            value={mentor.educationType}
+            onChange={handleChange}
+          />
+          <label htmlFor="aboutMe"> About Me: </label>
+          <textarea
+            id="aboutMe"
+            name="aboutMe"
+            value={mentor.aboutMe}
+            onChange={handleChange}
+          />
+          <button onClick={handleSubmit} type="submit">
+            Confirm profile update {mentor.mentorName}
+          </button>
+        </form>
+      </div>
+    </>
   ) : null;
 };
 export default UpdateMentorForm;

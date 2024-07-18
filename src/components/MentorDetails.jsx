@@ -38,19 +38,22 @@ const MentorDetails = () => {
 
   return mentor ? (
     <>
-      <Link to={'/mentors'}>
-        <button>Back to Mentor List</button>
-      </Link>
-      <Link to={`/mentors/add`}>
-        <button>Add another Mentor</button>
-      </Link>
-      <h1>{mentor.mentorName}</h1>
-      <h2>Education: {mentor.educationType}</h2>
-      <h2>About Me: {mentor.aboutMe}</h2>
-      <Link to={`/mentors/${mentor._id}/edit`}>
-        <button>Update Mentor {mentor.userName}</button>
-      </Link>
-      <button onClick={() => handleRemoveMentor(mentor._id)}>Remove Mentor</button>
+      <h1>The Mentor List</h1>
+      <div className="form-container">
+        <Link to={'/mentors'}>
+          <button>Back to Mentor List</button>
+        </Link>
+        <Link to={`/mentors/add`}>
+          <button>Add another Mentor</button>
+        </Link>
+        <h1>{mentor.mentorName}</h1>
+        <h2>Education: {mentor.educationType}</h2>
+        <h2>About Me: {mentor.aboutMe}</h2>
+        <Link to={`/mentors/${mentor._id}/edit`}>
+          <button>Update Mentor {mentor.userName}</button>
+        </Link>
+        <button onClick={() => handleRemoveMentor(mentor._id)}>Remove Mentor</button>
+      </div>
     </>
   ) : null;
 };

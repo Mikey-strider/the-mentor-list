@@ -33,33 +33,36 @@ const MentorForm = () => {
     });
   }
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="mentorName"> Name </label>
-        <input
-          id="mentorName"
-          name="mentorName"
-          value={formData.mentorName}
-          onChange={handleChange}
-          required
-        />
-        <label htmlFor="educationType"> Education </label>
-        <input
-          id="educationType"
-          name="educationType"
-          value={formData.educationType}
-          onChange={handleChange}
-        />
-        <label htmlFor="aboutMe"> About Me </label>
-        <input
-          id="aboutMe"
-          name="aboutMe"
-          value={formData.aboutMe}
-          onChange={handleChange}
-        />
-        <button type="submit">Add New Mentor</button>
-      </form>
-    </div>
+    <>
+      <h1>The Mentor List</h1>
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="mentorName"> Name: </label>
+          <input
+            id="mentorName"
+            name="mentorName"
+            value={formData.mentorName}
+            onChange={handleChange}
+            required
+          />
+          <label htmlFor="educationType"> Education: </label>
+          <input
+            id="educationType"
+            name="educationType"
+            value={formData.educationType}
+            onChange={handleChange}
+          />
+          <label htmlFor="aboutMe"> About Me: </label>
+          <textarea
+            id="aboutMe"
+            name="aboutMe"
+            value={formData.aboutMe}
+            onChange={handleChange}
+          />
+          <button type="submit">Add New Mentor</button>
+        </form>
+      </div>
+    </>
   );
 };
 export default MentorForm;

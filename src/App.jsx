@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, } from "react-router-dom";
 
 
 
@@ -10,34 +9,6 @@ import UpdateMentorForm from "./components/MentorUpdate";
 import SignInPage from "./components/SignInPage";
 
 const App = () => {
-  // const [selectMentor, setSelectMentor] = useState(null);
-  // const [error, setError] = useState("");
-  // const navigate = useNavigate();
-
-  // function updateSelected(mentor) {
-  //   console.log(mentor, " --- mentor selected");
-  //   setSelectMentor(mentor);
-  // }
-
-
-
-  // async function handleEditMentor(formData, id) {
-  //   const editedMentor = await update(formData, id);
-  //   const updatedMentorsArray = mentors.map((mentor) =>
-  //     editedMentor._id === mentor._id ? editedMentor : mentor
-  //   );
-  //   setMentors(updatedMentorsArray);
-  // }
-
-  // async function handleRemoveMentor(id) {
-  //   const removedMentor = await removeMentor(id);
-  //   const updatedMentorsArray = mentors.filter(mentor => id !== mentor._id)
-  //   console.log(removedMentor)
-  //   console.log(updatedMentorsArray)
-  //   setMentors(updatedMentorsArray);
-  //   navigate(`/`);
-
-  // }
 
   return (
     <>
@@ -60,7 +31,7 @@ const App = () => {
         />
         <Route
           path="/mentors/:mentorId/edit"
-          element={ <UpdateMentorForm /> }
+          element={<UpdateMentorForm />}
         />
         <Route path="/mentors/:mentorId" element={<MentorDetails />} />
         <Route path="/*" element={<h1>404</h1>} />

@@ -1,6 +1,6 @@
 const BASE_URL = import.meta.env.VITE_BACK_END_SERVER_URL + "/mentors";
 
-export const index = async () => {
+export async function index () {
   try {
     const response = await fetch(BASE_URL);
     const data = await response.json();
@@ -11,9 +11,9 @@ export const index = async () => {
     console.log(err);
     console.log(`Error occured fetching mentor data`);
   }
-};
+}
 
-export const create = async (formData) => {
+export async function create (formData) {
   try {
     const response = await fetch(BASE_URL, {
       method: 'POST',
@@ -29,9 +29,9 @@ export const create = async (formData) => {
     console.log(err);
     console.log(`Error occured creating mentor profile`);
   }
-};
+}
 
-export const update = async (formData, id) => {
+export async function update (formData, id) {
   const options = {
     method: 'PUT',
     headers: {
@@ -46,9 +46,9 @@ export const update = async (formData, id) => {
     console.log(err);
     console.log(`Error occured while updating the pet | _id: ${id}`);
   }
-};
+}
 
-export const removeMentor = async (id) => {
+export async function removeMentor (id) {
   const options = {
     method: 'DELETE',
     headers: {
@@ -64,4 +64,4 @@ export const removeMentor = async (id) => {
     console.log(err);
     console.log(`Error occured, could not delete mentor | _id: ${id}`);
   }
-};
+}

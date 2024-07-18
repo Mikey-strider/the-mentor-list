@@ -23,7 +23,7 @@ const UpdateMentorForm = ({ mentor, handleEditMentor }) => {
       aboutMe: "",
     });
     navigate(`/`);
-  };
+  }
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit}>

@@ -1,4 +1,3 @@
-import { Link, useParams } from "react-router-dom";
 
 const MentorList = ({ mentors, updateSelected }) => {
 

@@ -69,7 +69,7 @@ const App = () => {
           element={ <MentorForm handleAddMentor={handleAddMentor} />}
         />
         <Route
-          path="/"
+          path="/mentors"
           element={<MentorList mentors={mentors} updateSelected={updateSelected} />}
         />
         <Route

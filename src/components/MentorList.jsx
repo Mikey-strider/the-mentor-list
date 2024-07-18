@@ -12,6 +12,9 @@ const MentorList = () => {
     useEffect(() => {getMentors()}, []);
   return (
     <>
+    <Link to={`/mentors/add`}>
+      <button>Add a Mentor</button>
+    </Link>
       <h1>Mentors List</h1>
       <ul>
         {mentors?.length ? (

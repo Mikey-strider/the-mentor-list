@@ -50,7 +50,7 @@ const MentorForm = () => {
           value={formData.educationType}
           onChange={handleChange}
         />
-        <label htmlFor="aboutMe"> ABout Me </label>
+        <label htmlFor="aboutMe"> About Me </label>
         <input
           id="aboutMe"
           name="aboutMe"

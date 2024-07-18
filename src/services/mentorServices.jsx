@@ -33,9 +33,6 @@ export async function create (formData) {
   }
 }
 
-export async function update (mentor) {
-  
-}
 
 export async function removeMentor (id) {
   const options = {

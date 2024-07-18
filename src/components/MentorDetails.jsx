@@ -7,10 +7,10 @@ import { SERVER_URL } from "../util";
 const MentorDetails = () => {
   const [mentor, setMentor] = useState();
   const [isInvalidId, setIsInvalidId] = useState(false);
-  const {mentorId} = useParams();
+  const { mentorId } = useParams();
   const navigate = useNavigate();
 
-  async function getMentor(){
+  async function getMentor() {
     try {
       const res = await fetch(`${SERVER_URL}/mentors/${mentorId}`);
       setMentor(await res.json())
@@ -21,10 +21,10 @@ const MentorDetails = () => {
     }
   }
 
-  useEffect(() => {getMentor()}, []);
+  useEffect(() => { getMentor() }, []);
 
-  async function handleRemoveMentor(id){
-    await fetch(`${SERVER_URL}/mentors/${id}`, {method:'DELETE'});
+  async function handleRemoveMentor(id) {
+    await fetch(`${SERVER_URL}/mentors/${id}`, { method: 'DELETE' });
     navigate('/mentors');
   }
 
@@ -38,14 +38,20 @@ const MentorDetails = () => {
 
   return mentor ? (
     <>
+      <Link to={'/mentors'}>
+        <button>Back to Mentor List</button>
+      </Link>
+      <Link to={`/mentors/add`}>
+        <button>Add another Mentor</button>
+      </Link>
       <h1>{mentor.mentorName}</h1>
-      <h2>Education:{mentor.educationType}</h2>
+      <h2>Education: {mentor.educationType}</h2>
       <h2>About Me: {mentor.aboutMe}</h2>
       <Link to={`/mentors/${mentor._id}/edit`}>
         <button>Update Mentor {mentor.userName}</button>
       </Link>
       <button onClick={() => handleRemoveMentor(mentor._id)}>Remove Mentor</button>
     </>
-  ): null;
+  ) : null;
 };
 export default MentorDetails;

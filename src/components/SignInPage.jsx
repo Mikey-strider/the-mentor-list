@@ -8,6 +8,23 @@ export default function SignInPage({isSignUp}){
     password: "",
     email: "",
   })
+
+  async function signIn(){
+    await fetch('http://localhost:3000/login', {
+      method: 'POST', 
+      body: JSON.stringify({
+        userName: data.userName,
+        password: data.password
+      })
+    });
+  }
+  async function signUp(){
+    await fetch('http://localhost:3000/signup', {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+  }
+
   return <div>
     <label htmlFor="userName">User Name</label>
     <input 
@@ -23,12 +40,21 @@ export default function SignInPage({isSignUp}){
       onChange={(e) => {setData({...data, password: e.target.value})}}
       value={data.password}
     />
-    {isSignUp && <input 
+
+    {isSignUp && <>
+    <label htmlFor="email">Email</label>
+    <input 
       name="email"
       type="email"
       onChange={(e) => {setData({...data, email: e.target.value})}}
       value={data.email}
-    />}
-    <button type="submit">Submit</button>
+    /></>}
+    <button onClick={() => {
+      if (isSignUp){
+        signUp()
+      } else {
+        signIn()
+      }
+    }}>Submit</button>
   </div>
 }

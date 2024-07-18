@@ -1,15 +1,22 @@
+import { useEffect, useState } from "react";
+import { SERVER_URL } from "../util";
+import { Link } from "react-router-dom";
 
-const MentorList = ({ mentors, updateSelected }) => {
+const MentorList = () => {
 
+    const [mentors, setMentors] = useState([]);
+    async function getMentors(){
+      const res = await fetch(`${SERVER_URL}/mentors`);
+      setMentors(await res.json())
+    }
+    useEffect(() => {getMentors()}, []);
   return (
     <>
       <h1>Mentors List</h1>
       <ul>
         {mentors?.length ? (
           mentors?.map((mentor) => (
-            <link key={mentor._id} to={`/mentors/${mentor._id}`} onClick={() => updateSelected(mentor)}>
-              <li>{mentor.userName}</li>
-            </link>
+              <li key={mentor._id}><Link to={`/mentors/${mentor._id}`}>{mentor.mentorName}</Link></li>
           ))
         ) : (
           <h2>That mentor was not found</h2>

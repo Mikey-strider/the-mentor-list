@@ -1,3 +1,5 @@
+import { SERVER_URL } from "../util";
+
 const BASE_URL = import.meta.env.VITE_BACK_END_SERVER_URL + "/mentors";
 
 export async function index () {
@@ -15,7 +17,7 @@ export async function index () {
 
 export async function create (formData) {
   try {
-    const response = await fetch(BASE_URL, {
+    const response = await fetch(`${SERVER_URL}/mentors`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,21 +33,8 @@ export async function create (formData) {
   }
 }
 
-export async function update (formData, id) {
-  const options = {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formData),
-  };
-  try {
-    const response = await fetch(BASE_URL + `${id}`, options);
-    if (response.ok) return response.json();
-  } catch (err) {
-    console.log(err);
-    console.log(`Error occured while updating the pet | _id: ${id}`);
-  }
+export async function update (mentor) {
+  
 }
 
 export async function removeMentor (id) {

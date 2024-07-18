@@ -1,12 +1,25 @@
 import { useState } from "react";
+import { create } from "../services/mentorServices";
+import { useNavigate } from "react-router-dom";
 
-const MentorForm = ({ handleAddMentor }) => {
+const MentorForm = () => {
   const [formData, setFormData] = useState({
-    userName: "",
+    mentorName: "",
     educationType: "",
     aboutMe: "",
   });
 
+  const navigate = useNavigate();
+
+  async function handleAddMentor(formData) {
+    try {
+      const data = await create(formData);
+      console.log(data, " --- added mentor");
+      navigate(`/mentors/${data._id}`);
+    } catch (err) {
+      console.error(err);
+    }
+  }
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -14,7 +27,7 @@ const MentorForm = ({ handleAddMentor }) => {
     e.preventDefault();
     handleAddMentor(formData);
     setFormData({
-      userName: "",
+      mentorName: "",
       educationType: "",
       aboutMe: "",
     });
@@ -22,11 +35,11 @@ const MentorForm = ({ handleAddMentor }) => {
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="userName"> UserName </label>
+        <label htmlFor="mentorName"> Name </label>
         <input
-          id="userName"
-          name="userName"
-          value={formData.name}
+          id="mentorName"
+          name="mentorName"
+          value={formData.mentorName}
           onChange={handleChange}
           required
         />

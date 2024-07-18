@@ -1,84 +1,68 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { create, index, removeMentor, update } from "./services/mentorServices";
+
 
 
 import MentorList from "./components/MentorList";
 import MentorDetails from "./components/MentorDetails";
 import MentorForm from "./components/MentorForm";
 import UpdateMentorForm from "./components/MentorUpdate";
+import SignInPage from "./components/SignInPage";
 
 const App = () => {
-  const [mentors, setMentors] = useState([]);
-  const [selectMentor, setSelectMentor] = useState(null);
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  // const [selectMentor, setSelectMentor] = useState(null);
+  // const [error, setError] = useState("");
+  // const navigate = useNavigate();
 
-  function updateSelected(mentor) {
-    console.log(mentor, " --- mentor selected");
-    setSelectMentor(mentor);
-  }
+  // function updateSelected(mentor) {
+  //   console.log(mentor, " --- mentor selected");
+  //   setSelectMentor(mentor);
+  // }
 
 
-  async function handleAddMentor(formData) {
-    try {
-      const data = await create(formData);
-      console.log(data, " --- added mentor");
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  async function handleEditMentor(formData, id) {
-    const editedMentor = await update(formData, id);
-    const updatedMentorsArray = mentors.map((mentor) =>
-      editedMentor._id === mentor._id ? editedMentor : mentor
-    );
-    setMentors(updatedMentorsArray);
-  }
 
-  async function handleRemoveMentor(id) {
-    const removedMentor = await removeMentor(id);
-    const updatedMentorsArray = mentors.filter(mentor => id !== mentor._id)
-    console.log(removedMentor)
-    console.log(updatedMentorsArray)
-    setMentors(updatedMentorsArray);
-    navigate(`/`);
+  // async function handleEditMentor(formData, id) {
+  //   const editedMentor = await update(formData, id);
+  //   const updatedMentorsArray = mentors.map((mentor) =>
+  //     editedMentor._id === mentor._id ? editedMentor : mentor
+  //   );
+  //   setMentors(updatedMentorsArray);
+  // }
 
-  }
+  // async function handleRemoveMentor(id) {
+  //   const removedMentor = await removeMentor(id);
+  //   const updatedMentorsArray = mentors.filter(mentor => id !== mentor._id)
+  //   console.log(removedMentor)
+  //   console.log(updatedMentorsArray)
+  //   setMentors(updatedMentorsArray);
+  //   navigate(`/`);
 
-  useEffect(() => {
-    try {
-      const fetchMentors = async () => {
-        let data = await index();
-        setMentors(data);
-        setError("");
-      };
-      fetchMentors();
-    } catch (err) {
-      console.error(err);
-      setError("Sorry We could not find the Mentors you were looking for.");
-    }
-  }, []);
+  // }
 
   return (
     <>
       <Routes>
-        
-        <Route 
-          path="/"
-          element={ <MentorForm handleAddMentor={handleAddMentor} />}
+        <Route
+          path="/signin"
+          element={<SignInPage isSignUp={false} />}
+        />
+        <Route
+          path="/signup"
+          element={<SignInPage isSignUp={true} />}
+        />
+        <Route
+          path="/mentors/add"
+          element={<MentorForm />}
         />
         <Route
           path="/mentors"
-          element={<MentorList mentors={mentors} updateSelected={updateSelected} />}
+          element={<MentorList />}
         />
         <Route
           path="/mentors/:mentorId/edit"
-          element={
-            <UpdateMentorForm handleEditMentor={handleEditMentor} mentor={selectMentor} />
-          }
+          element={ <UpdateMentorForm /> }
         />
-        <Route path="/mentors/:mentorId" element={<MentorDetails handleRemoveMentor={handleRemoveMentor} mentor={selectMentor} />} />
+        <Route path="/mentors/:mentorId" element={<MentorDetails />} />
         <Route path="/*" element={<h1>404</h1>} />
       </Routes>
     </>

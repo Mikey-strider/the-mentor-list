@@ -40,9 +40,7 @@ const MentorDetails = () => {
     <>
       <h1>The Mentor List</h1>
       <div className="form-container">
-        <Link to={'/mentors'}>
-          <button>Back to Mentor List</button>
-        </Link>
+        
         <Link to={`/mentors/add`}>
           <button>Add another Mentor</button>
         </Link>

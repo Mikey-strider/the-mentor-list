@@ -41,9 +41,10 @@ h1 {
   line-height: 1.1;
 }
 
-li {
-  text-decoration: none;
+ul {
+  list-style-type: none;
 }
+
 
 button {
   border-radius: 8px;
@@ -92,6 +93,8 @@ button:focus-visible {
   justify-content: flex-start;
   background-color: #1a1a1a;
   background-image: url(https://media.freestocktextures.com/cache/68/54/685449928a20429dbaaf477d5c89a5f5.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 
 }
 
@@ -105,4 +108,20 @@ button:focus-visible {
   justify-content: flex-end;
   background-color: #1a1a1a;
   background-image: url(https://media.freestocktextures.com/cache/68/54/685449928a20429dbaaf477d5c89a5f5.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.nav-bar{
+  display: flex;
+  flex-direction: row;
+  border: 2px #51906a solid;
+  border-radius: 0px 0px 7px 7px;
+  justify-content: flex-start;
+  margin-bottom: 50px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: hsla(129, 16%, 9%, .73);
+  
 }

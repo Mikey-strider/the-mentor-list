@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { SERVER_URL } from "../util";
 import { Link } from "react-router-dom";
-// import {Mission} from "./Mission";
+import Mission from "./Mission";
 
 const MentorList = () => {
 
@@ -11,26 +11,27 @@ const MentorList = () => {
     setMentors(await res.json())
   }
   useEffect(() => { getMentors() }, []);
-  // <Mission />
+
 
   return (
     <>
-      <h1>The Mentor List</h1>
       <div className="form-container">
         <Link to={`/mentors/add`}>
           <button>Add a Mentor</button>
         </Link>
-        <h1>Mentors List</h1>
+        <h1>The Mentors List</h1>
         <ul>
           {mentors?.length ? (
             mentors?.map((mentor) => (
-              <li key={mentor._id}><Link to={`/mentors/${mentor._id}`}>{mentor.mentorName}</Link></li>
+              <li key={mentor._id}><Link to={`/mentors/${mentor._id}`}>{mentor.mentorName}: I teach {mentor.educationType}</Link></li>
             ))
           ) : (
             <h2>That mentor was not found</h2>
           )}
         </ul>
+          <Mission />
       </div>
+
     </>
   );
 };
